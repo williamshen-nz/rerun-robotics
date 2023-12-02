@@ -1,0 +1,43 @@
+[project]
+name = "rerun-robotics"
+version = "0.0.1"
+description = "Robotics visualization using Rerun"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+keywords = ["robotics", "visualization"]
+authors = [
+    { name = "William Shen", email = "willshen@mit.edu" },
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "numpy",
+    "pybullet",
+    "rerun",
+    "trimesh",
+    "tqdm",
+    "yourdfpy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+]
+
+[tool.black]
+line-length = 120
+
+[project.urls]
+"Source" = "https://github.com/williamshen-nz/rerun-robotics"
+
+[tool.setuptools.packages]
+find = { include = ["rerun_robotics"] }
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
