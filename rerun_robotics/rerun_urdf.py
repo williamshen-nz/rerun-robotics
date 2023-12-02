@@ -1,7 +1,7 @@
 """
 Modified from: https://github.com/rerun-io/rerun/blob/main/examples/python/ros_node/rerun_urdf.py
 """
-from typing import cast
+from typing import Union, cast
 
 import numpy as np
 import rerun as rr
@@ -11,7 +11,7 @@ from rerun_robotics.utils import clean_rerun_path
 
 
 def log_scene(
-    scene: trimesh.Scene, node: str, path: str | None = None, timeless: bool = False, add_mesh: bool = True
+    scene: trimesh.Scene, node: str, path: Union[str, None] = None, timeless: bool = False, add_mesh: bool = True
 ) -> None:
     """Log a trimesh scene to rerun."""
     path = path + "/" + node if path else node
