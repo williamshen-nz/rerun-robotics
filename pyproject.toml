@@ -1,6 +1,6 @@
 [project]
 name = "rerun-robotics"
-version = "0.0.1"
+version = "0.0.2"
 description = "Robotics visualization using Rerun"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -17,7 +17,7 @@ classifiers = [
 dependencies = [
     "numpy",
     "pybullet",
-    "rerun",
+    "rerun-sdk",
     "trimesh",
     "tqdm",
     "yourdfpy",
