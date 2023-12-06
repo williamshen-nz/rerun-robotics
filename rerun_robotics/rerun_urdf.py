@@ -63,6 +63,7 @@ def log_scene(
                     indices=mesh.faces,
                     mesh_material=mesh_material,
                 ),
+                timeless=timeless,
             )
 
     if children:
