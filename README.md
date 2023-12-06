@@ -33,7 +33,7 @@ panda = load_franka_panda()
 panda.set_joint_positions([0, -0.75, 0, -2.35, 0, 1.57, 0.78, 0.04])
 ```
 
-<img src="https://github.com/williamshen-nz/rerun-robotics/blob/main/docs/panda_example.png?raw=true" width="500">
+<img src="https://github.com/williamshen-nz/rerun-robotics/blob/main/docs/panda_example.png?raw=true" width="550">
 
 ### Franka Panda Demo
 
