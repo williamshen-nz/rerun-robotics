@@ -18,6 +18,7 @@ pip install -e .
 ```
 
 ## Usage
+
 Check the [Rerun documentation](https://www.rerun.io/docs) for information on how to use the viewer.
 
 We currently support the Franka Emika Panda robot and setting it via joint positions.
@@ -36,6 +37,8 @@ panda.set_joint_positions([0, -0.75, 0, -2.35, 0, 1.57, 0.78, 0.04])
 <img src="https://github.com/williamshen-nz/rerun-robotics/blob/main/docs/panda_example.png?raw=true" width="550">
 
 ### Franka Panda Demo
+
+This demo shows how to log joint positions over time using a [timeline](https://rerun.io/docs/concepts/timelines).
 
 ```bash
 python -m rerun_robotics.examples.panda
