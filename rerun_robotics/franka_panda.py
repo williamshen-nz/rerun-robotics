@@ -37,8 +37,8 @@ class PandaRerun:
 
     def __init__(self, urdf: URDF):
         self._urdf = urdf
-        rr.log("panda_link0", rr.ViewCoordinates.RIGHT_HAND_Z_UP, timeless=True)
-        log_scene(scene=urdf.scene, node="panda_link0", path="panda", timeless=True)
+        rr.log("panda_link0", rr.ViewCoordinates.RIGHT_HAND_Z_UP, static=True)
+        log_scene(scene=urdf.scene, node="panda_link0", path="panda", static=False, add_mesh=True)
 
     @property
     def joint_positions(self) -> np.ndarray:
@@ -50,7 +50,7 @@ class PandaRerun:
                 f"We only support setting 7 arm joints + 1 gripper joints, not {len(joint_positions)} joints"
             )
         self._urdf.update_cfg(joint_positions)
-        log_scene(scene=self._urdf.scene, node="panda_link0", path="panda", timeless=False, add_mesh=False)
+        log_scene(scene=self._urdf.scene, node="panda_link0", path="panda", static=False, add_mesh=False)
 
 
 def load_franka_panda(initial_joint_positions=panda_neutral_joint_positions) -> PandaRerun:

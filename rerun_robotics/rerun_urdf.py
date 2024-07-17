@@ -3,15 +3,14 @@ Modified from: https://github.com/rerun-io/rerun/blob/main/examples/python/ros_n
 """
 from typing import Union, cast
 
-import numpy as np
 import rerun as rr
 import trimesh
 
-from rerun_robotics.utils import clean_rerun_path
+from rerun_robotics.utils import clean_rerun_path, trimesh_to_rerun
 
 
 def log_scene(
-    scene: trimesh.Scene, node: str, path: Union[str, None] = None, timeless: bool = False, add_mesh: bool = True
+    scene: trimesh.Scene, node: str, path: Union[str, None] = None, static: bool = False, add_mesh: bool = True
 ) -> None:
     """Log a trimesh scene to rerun."""
     path = path + "/" + node if path else node
@@ -33,39 +32,16 @@ def log_scene(
                     translation=world_from_mesh[:3, 3],
                     mat3x3=world_from_mesh[:3, :3],
                 ),
-                timeless=timeless,
+                static=static,
             )
 
         # Log this node's mesh, if it has one.
-        mesh = cast(trimesh.Trimesh, scene.geometry.get(node_data[1])) if add_mesh else None
-        if mesh:
-            # If trimesh gives us a single vertex color for the entire mesh, we can interpret that
-            # as an albedo factor for the whole primitive.
-            vertex_colors = None
-            mesh_material = None
-            try:
-                colors = mesh.visual.to_color().vertex_colors
-                if len(colors) == 4:
-                    # If trimesh gives us a single vertex color for the entire mesh, we can interpret that
-                    # as an albedo factor for the whole primitive.
-                    mesh_material = rr.Material(albedo_factor=np.array(colors))
-                else:
-                    vertex_colors = colors
-            except Exception:
-                pass
-
-            rr.log(
-                path,
-                rr.Mesh3D(
-                    vertex_positions=mesh.vertices,
-                    vertex_colors=vertex_colors,
-                    vertex_normals=mesh.vertex_normals,
-                    indices=mesh.faces,
-                    mesh_material=mesh_material,
-                ),
-                timeless=timeless,
-            )
+        if add_mesh:
+            mesh = cast(trimesh.Trimesh, scene.geometry.get(node_data[1]))
+            # Log mesh as static so we can reuse it. Re-logging it has high costs
+            if mesh:
+                rr.log(path, trimesh_to_rerun(mesh), static=True)
 
     if children:
         for child in children:
-            log_scene(scene, child, path, timeless)
+            log_scene(scene, child, path, static, add_mesh)

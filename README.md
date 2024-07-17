@@ -42,3 +42,15 @@ python -m rerun_robotics.examples.panda
 ```
 
 [Source code](rerun_robotics/examples/panda.py)
+
+## Troubleshooting
+
+If you are having issues, try to install the most recent version of the rerun-sdk (`pip install rerun-sdk -U`). The APIs
+are mostly stable but still change sometimes. If you still are unable to get things working, please open an issue and we
+will do our best to help!
+
+Last tested on `rerun-sdk==0.17.0`.
+
+## Changelog
+
+See [docs/CHANGELOG.md](docs/CHANGELOG.md).
