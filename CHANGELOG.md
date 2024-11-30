@@ -2,6 +2,11 @@
 
 ## Version 0
 
+### [0.0.5] - 2024-11-30
+
+- Fixed bugs for `rerun-sdk>=0.18.0` after function signatures changed.
+- Log invisible transform arrows.
+
 ### [0.0.4] - 2023-12-05
 
 - Fixed Franka Panda mesh color and materials

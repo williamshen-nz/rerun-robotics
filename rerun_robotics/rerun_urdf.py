@@ -1,6 +1,7 @@
 """
 Modified from: https://github.com/rerun-io/rerun/blob/main/examples/python/ros_node/rerun_urdf.py
 """
+
 from typing import Union, cast
 
 import rerun as rr
@@ -41,6 +42,9 @@ def log_scene(
             # Log mesh as static so we can reuse it. Re-logging it has high costs
             if mesh:
                 rr.log(path, trimesh_to_rerun(mesh), static=True)
+            else:
+                # Log invisible transform arrow
+                rr.log_components(path, [rr.components.AxisLength(0.0)], static=True)
 
     if children:
         for child in children:

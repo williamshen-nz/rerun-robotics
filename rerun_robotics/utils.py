@@ -24,19 +24,19 @@ def trimesh_to_rerun(geometry: trimesh.PointCloud | trimesh.Trimesh):
         # as an albedo factor for the whole primitive.
         mesh = geometry
         vertex_colors = None
-        mesh_material = None
+        albedo_factor = None
         if hasattr(mesh.visual, "vertex_colors"):
             colors = mesh.visual.vertex_colors
             if len(colors) == 4:
                 # If trimesh gives us a single vertex color for the entire mesh, we can interpret that
                 # as an albedo factor for the whole primitive.
-                mesh_material = rr.Material(albedo_factor=np.array(colors))
+                albedo_factor = np.array(colors)
             else:
                 vertex_colors = colors
         elif hasattr(mesh.visual, "material"):
             # There are other properties in trimesh material, but rerun only supports albedo
             trimesh_material = mesh.visual.material
-            mesh_material = rr.Material(albedo_factor=trimesh_material.main_color)
+            albedo_factor = trimesh_material.main_color
         else:
             raise NotImplementedError("Couldn't determine mesh color or material")
 
@@ -45,7 +45,7 @@ def trimesh_to_rerun(geometry: trimesh.PointCloud | trimesh.Trimesh):
             vertex_colors=vertex_colors,
             vertex_normals=mesh.vertex_normals,
             triangle_indices=mesh.faces,
-            mesh_material=mesh_material,
+            albedo_factor=albedo_factor,
         )
     else:
         raise NotImplementedError(f"Unsupported trimesh geometry: {type(geometry)}")

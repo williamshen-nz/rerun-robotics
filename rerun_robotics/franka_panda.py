@@ -33,7 +33,7 @@ def locate_franka_asset(fname: str) -> str:
 
 
 class PandaRerun:
-    """Helper class for commanding the Panda in rerun."""
+    """Helper class for commanding the Panda in rerun. Note the last joint is a mimic joint for the gripper."""
 
     def __init__(self, urdf: URDF):
         self._urdf = urdf
