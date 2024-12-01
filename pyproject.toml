@@ -16,6 +16,7 @@ classifiers = [
 
 dependencies = [
     "numpy",
+    "open3d",
     "pybullet",
     "rerun-sdk>=0.18.0",
     "trimesh",
