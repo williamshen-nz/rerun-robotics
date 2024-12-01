@@ -1,5 +1,14 @@
 # Changelog
 
+### v0.0.6
+
+- Fixed bugs for `rerun-sdk>=0.18.0` after function signatures changed.
+- Log invisible transform arrows.
+
+**Breaking Changes**
+
+- The rerun API has changed significantly, so you should upgrade `rerun-sdk` in conjunction with `rerun-robotics`.
+
 ### v0.0.5
 
 Fixed the Panda demo.
