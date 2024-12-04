@@ -1,5 +1,10 @@
 # Changelog
 
+### v0.0.7
+
+- Removed open3d dependency, thanks @abhishek47kashyap for spotting this.
+
+
 ### v0.0.6
 
 - Fixed bugs for `rerun-sdk>=0.18.0` after function signatures changed.

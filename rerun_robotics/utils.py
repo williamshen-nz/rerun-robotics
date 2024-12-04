@@ -1,5 +1,6 @@
+from typing import Union
+
 import numpy as np
-import open3d as o3d
 import rerun as rr
 import trimesh
 
@@ -10,13 +11,7 @@ def clean_rerun_path(path: str) -> str:
     return path
 
 
-def o3d_point_cloud_to_rerun(pcd: o3d.geometry.PointCloud, point_size: float = 0.001) -> rr.Points3D:
-    positions = np.asarray(pcd.points)
-    colors = np.asarray(pcd.colors)
-    return rr.Points3D(positions, colors=colors, radii=point_size)
-
-
-def trimesh_to_rerun(geometry: trimesh.PointCloud | trimesh.Trimesh):
+def trimesh_to_rerun(geometry: Union[trimesh.PointCloud, trimesh.Trimesh]) -> Union[rr.Points3D, rr.Mesh3D]:
     if isinstance(geometry, trimesh.PointCloud):
         return rr.Points3D(positions=geometry.vertices, colors=geometry.colors)
     elif isinstance(geometry, trimesh.Trimesh):
