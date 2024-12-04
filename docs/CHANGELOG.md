@@ -2,7 +2,7 @@
 
 ### v0.0.7
 
-- Removed open3d dependency, thanks @abhishek47kashyap for spotting this.
+- Removed open3d dependency, thanks [@abhishek47kashyap](https://github.com/abhishek47kashyap) for spotting this.
 
 
 ### v0.0.6

@@ -52,7 +52,7 @@ If you are having issues, try to install the most recent version of the rerun-sd
 are mostly stable but still change sometimes. If you still are unable to get things working, please open an issue and we
 will do our best to help!
 
-Last tested on `rerun-sdk==0.17.0`.
+Last tested on `rerun-sdk==0.20.2`.
 
 ## Changelog
 
